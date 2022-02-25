@@ -95,9 +95,17 @@ while (int(time.time() - start_record_time) < capture_duration):
     #     break
 
 capture.release()
-label_counts = collections.Counter(labels)
-result = dict(label_counts)
+fer_result = []
+for label in class_labels:
+    emotion = {
+        "id": label,
+        "counts": labels.count(label)
+    }
+    fer_result.append(emotion)
+# label_counts = collections.Counter(labels)
+# result = dict(label_counts)
 # result.update({'Logs': logs})
-label_json = json.dumps(result)
+# label_json = json.dumps(result)
+label_json = json.dumps(fer_result)
 # cv2.destroyAllWindows()
 print(label_json)

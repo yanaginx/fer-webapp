@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Spinner from "./components/Spinner";
 import Fer from "./pages/Fer";
+import Dashboard from "./pages/Dashboard";
 
 import { useState } from "react";
 import logo from "./logo.svg";
@@ -14,7 +14,7 @@ function App() {
         <div className="container">
           <Routes>
             <Route path="/fer" element={<Fer />} />
-            <Route path="/" element={<Spinner />} />
+            <Route path="/" element={<Dashboard />} />
           </Routes>
         </div>
       </Router>
