@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv").config();
 const port = process.env.PORT || 8000;
@@ -47,5 +48,20 @@ app.use("/api/fer", require("./routes/ferRoutes"));
 
 // custom middleware
 app.use(errorHandler);
+
+// Serve frontend
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "frontend", "dist", "index.html")
+    )
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("Please set to production mode");
+  });
+}
 
 app.listen(port, () => console.log(`Server start listening on port ${port}!`));
